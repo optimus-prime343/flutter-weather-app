@@ -4,6 +4,7 @@ class WeatherInfo {
   final String icon;
   final double temperature;
   final double feelsLike;
+  final double humidity;
   final double visibility;
   final double windSpeed;
   final String city;
@@ -14,6 +15,7 @@ class WeatherInfo {
     required this.icon,
     required this.temperature,
     required this.feelsLike,
+    required this.humidity,
     required this.visibility,
     required this.windSpeed,
     required this.city,
@@ -31,6 +33,7 @@ class WeatherInfo {
       feelsLike: main['feels_like'],
       // visibility can either be int or double
       // since we can't pass int to double.parse we have to convert it to string first
+      humidity: double.parse(main['humidity'].toString()),
       visibility: double.parse(json['visibility'].toString()),
       windSpeed: json['wind']['speed'],
       city: json['name'],

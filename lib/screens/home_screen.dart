@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_weather_app/models/weather_info_model.dart';
+import 'package:flutter_weather_app/widgets/weather_info.dart';
+import '../models/weather_info_model.dart';
 
 import '../services/weather_service.dart';
 
@@ -31,7 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CircularProgressIndicator(),
               );
             }
-            return const Text('123');
+            if (snapshot.hasError) return Text(snapshot.error.toString());
+            return WeatherInfoContainer(
+              weatherInfo: snapshot.data!,
+            );
           },
         ),
       ),

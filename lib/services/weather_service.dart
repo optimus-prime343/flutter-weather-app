@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_weather_app/models/weather_info_model.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../models/weather_info_model.dart';
 import 'location_service.dart';
 
 class WeatherService {
@@ -17,7 +17,7 @@ class WeatherService {
       final Dio dio = Dio();
       Position position = await LocationService.determinePosition();
       Response response = await dio.get(
-        'https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=$apiKey',
+        'https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&units=metric&appid=$apiKey',
       );
       Map<String, dynamic> data = response.data;
       return WeatherInfo.fromJson(data);
